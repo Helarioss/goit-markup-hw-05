@@ -101,7 +101,7 @@ img {
 }
 
 .logo-web,
-.is-current,
+.menu-link.is-current,
 .menu-link:hover,
 .menu-link:focus,
 .header-contacts-link:hover,
@@ -212,11 +212,15 @@ img {
 /* ---------------- Header ---------------- */
 .is-current::after {
   content: '';
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
   display: block;
   width: 100%;
   height: 4px;
 
-  background-color: #2196f3;
+  background-color: var(--first-accent-color);
   border-radius: 2px;
 }
 
@@ -256,6 +260,8 @@ img {
 }
 
 .menu-link {
+  position: relative;
+
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
@@ -413,7 +419,7 @@ img {
   margin-bottom: var(--list-gap);
 }
 
-.thumb {
+.features-thumb {
   display: flex;
   height: 120px;
   justify-content: center;
@@ -480,7 +486,7 @@ img {
   text-transform: uppercase;
   text-align: center;
 
-  color: #ffffff;
+  color: var(--second-color);
   background-color: rgba(47, 48, 58, 0.8);
 }
 
@@ -637,12 +643,15 @@ img {
 }
 
 .works-overlay {
-  width: 100%;
   height: 100%;
+  width: 100%;
 
   position: absolute;
-  top: 100%;
   left: 0;
+
+  /* bottom: 0;
+  transform: translateY(100%); */
+  bottom: -100%;
 
   padding: 63px 24px;
 
@@ -650,13 +659,14 @@ img {
   line-height: 1.56;
   letter-spacing: 0.03em;
 
-  color: #ffffff;
+  color: var(--second-color);
   background-color: rgba(33, 150, 243, 0.9);
   transition: transform var(--duration) var(--cubic);
 }
 
 .works-link:hover .works-overlay,
 .works-link:focus .works-overlay {
+  /* transform: translateY(0); */
   transform: translateY(-100%);
 }
 
@@ -702,12 +712,14 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: 1;
 
   background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity var(--duration) var(--cubic);
 }
 
 .backdrop.is-hidden {
-  visibility: none;
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
 }
@@ -719,18 +731,18 @@ img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
 
-  background-color: #ffffff;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-    0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 
+  background-color: var(--second-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
   transition: transform var(--duration) var(--cubic);
 }
 
 .backdrop.is-hidden > .modal {
-  transform: scale(0.5);
+  transform: translate(-50%, -50%) scale(0.5);
 }
 
 .modal-btn {
@@ -745,7 +757,7 @@ img {
   justify-content: center;
   align-items: center;
 
-  background-color: #ffffff;
+  background-color: var(--second-color);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 }
